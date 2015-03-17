@@ -1,6 +1,7 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2013-2015 Avencall
+# Copyright (C) 2015 Avencall
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,4 +16,19 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-from xivo_provd_client.client import new_provisioning_client
+from setuptools import setup
+from setuptools import find_packages
+
+setup(
+    name='xivo_provd_client',
+    version='0.1',
+
+    description='a simple client library for the xivo-provd HTTP interface',
+
+    author='Avencall',
+    author_email='dev@avencall.com',
+
+    url='https://github.com/xivo-pbx/xivo-provd-client',
+
+    packages=find_packages(),
+)
