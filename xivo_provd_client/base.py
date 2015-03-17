@@ -26,14 +26,6 @@ to characters available in ASCII).
 
 """
 
-
-# XXX this implementation use undocumented URI templates, so it's supposed
-#     to be more fragile vs an implementation using standard HTTP mechanism
-#     with cache to speed up the whole thing. That said, cache management
-#     and everything around it seems like a high cost to pay, especially
-#     since twisted doesn't offer anything special for this... this might
-#     eventually evolve, yet this has to be seen...
-
 import urllib
 import urllib2
 import urlparse

@@ -24,8 +24,7 @@ class ServiceNotAvailableError(Exception):
 
 
 class OperationInProgress(object):
-    # This class has the same interface as the resource it wraps, yet it
-    # might eventually evolve (catching exception, etc)
+
     def __init__(self, op_in_progress_res):
         self._res = op_in_progress_res
 
