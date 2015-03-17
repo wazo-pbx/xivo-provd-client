@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2011-2014 Avencall
+# Copyright (C) 2011-2015 Avencall
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,6 +44,38 @@ def once_per_instance(fun):
             cache_dict[self] = fun(self, *args, **kwargs)
             return cache_dict[self]
     return aux
+
+
+def uri_append_path(base, *path):
+    """Append path to base URI.
+
+    >>> uri_append_path('http://localhost/', 'foo')
+    'http://localhost/foo
+    >>> uri_append_path('http://localhost/bar', 'foo')
+    'http://localhost/bar/foo'
+    >>> uri_append_path('http://localhost/bar', 'foo', 'bar')
+    'http://localhost/bar/foo/bar'
+
+    """
+    if not path:
+        return base
+    else:
+        path_to_append = '/'.join(path)
+        if base.endswith('/'):
+            fmt = '%s%s'
+        else:
+            fmt = '%s/%s'
+        return fmt % (base, path_to_append)
+
+
+def uri_append_query(base, query):
+    """Append query to base URI.
+
+    >>> uri_append_query('http://localhost/', 'id=12')
+    'http://localhost/?id=12
+
+    """
+    return base + '?' + query
 
 
 class DeleteRequest(urllib2.Request):

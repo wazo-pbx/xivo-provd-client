@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2011-2014 Avencall
+# Copyright (C) 2011-2015 Avencall
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,10 +38,11 @@ import urllib
 import urllib2
 import urlparse
 import json
-from provd.rest.client.util import once_per_instance, DeleteRequest, \
-    PutRequest
-from provd.rest.util import PROV_MIME_TYPE, uri_append_path, uri_append_query
+from xivo_provd_client.util import once_per_instance, DeleteRequest, \
+    PutRequest, uri_append_path, uri_append_query
 
+
+PROV_MIME_TYPE = 'application/vnd.proformatique.provd+json'
 GET_HEADERS = {'Accept': PROV_MIME_TYPE}
 POST_HEADERS = {'Accept': PROV_MIME_TYPE, 'Content-Type': PROV_MIME_TYPE}
 

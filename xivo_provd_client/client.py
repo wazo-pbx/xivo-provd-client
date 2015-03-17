@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2011-2014 Avencall
+# Copyright (C) 2011-2015 Avencall
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-from provd.rest.client.base import new_server_resource
-from provd.rest.client.util import once_per_instance
+from xivo_provd_client.base import new_server_resource
+from xivo_provd_client.util import once_per_instance
 
 
 class ServiceNotAvailableError(Exception):
