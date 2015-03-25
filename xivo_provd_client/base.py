@@ -30,6 +30,8 @@ import urllib
 import urllib2
 import urlparse
 import json
+from contextlib import contextmanager
+from xivo_provd_client.error import NotFoundError
 from xivo_provd_client.util import once_per_instance, DeleteRequest, \
     PutRequest, uri_append_path, uri_append_query
 
@@ -55,6 +57,16 @@ def new_put_request(uri, obj):
 
 def new_delete_request(uri):
     return DeleteRequest(uri, None, GET_HEADERS)
+
+
+@contextmanager
+def not_found_error_on_404():
+    try:
+        yield
+    except urllib2.HTTPError as e:
+        if e.code == 404:
+            raise NotFoundError()
+        raise
 
 
 def _build_find_query_string(selector=None, fields=None, skip=0, limit=0, sort=None):
@@ -453,7 +465,8 @@ class DeviceResource(object):
     def get(self):
         """Return a device object (i.e. a dictionary)."""
         request = self._build_get_request()
-        response, _ = self._broker.json_content(request)
+        with not_found_error_on_404():
+            response, _ = self._broker.json_content(request)
         return response[u'device']
 
     def _build_update_request(self, device):
@@ -467,14 +480,16 @@ class DeviceResource(object):
         
         """
         request = self._build_update_request(device)
-        self._broker.ignore_content(request)
+        with not_found_error_on_404():
+            self._broker.ignore_content(request)
 
     def _build_delete_request(self):
         return new_delete_request(self._device_uri)
 
     def delete(self):
         request = self._build_delete_request()
-        self._broker.ignore_content(request)
+        with not_found_error_on_404():
+            self._broker.ignore_content(request)
 
 
 class ConfigManagerResource(object):
@@ -565,7 +580,8 @@ class ConfigResource(object):
 
     def get(self):
         request = self._build_get_request()
-        response, _ = self._broker.json_content(request)
+        with not_found_error_on_404():
+            response, _ = self._broker.json_content(request)
         return response[u'config']
 
     def _build_update_request(self, config):
@@ -579,14 +595,16 @@ class ConfigResource(object):
         
         """
         request = self._build_update_request(config)
-        self._broker.ignore_content(request)
+        with not_found_error_on_404():
+            self._broker.ignore_content(request)
 
     def _build_delete_request(self):
         return new_delete_request(self._config_uri)
 
     def delete(self):
         request = self._build_delete_request()
-        self._broker.ignore_content(request)
+        with not_found_error_on_404():
+            self._broker.ignore_content(request)
 
 
 class RawConfigResource(object):
@@ -599,7 +617,8 @@ class RawConfigResource(object):
 
     def get(self):
         request = self._build_get_request()
-        response, _ = self._broker.json_content(request)
+        with not_found_error_on_404():
+            response, _ = self._broker.json_content(request)
         return response[u'raw_config']
 
 
