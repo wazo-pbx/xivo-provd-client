@@ -353,3 +353,19 @@ class InstallService(object):
 def new_provisioning_client(server_uri, credentials=None):
     server_res = new_server_resource(server_uri, credentials)
     return ProvisioningClient(server_res)
+
+
+def new_provisioning_client_from_config(config):
+    host = config.get('host', 'localhost')
+    port = config.get('port', 8666)
+    username = config.get('username')
+    password = config.get('password')
+    https = config.get('https', False)
+
+    scheme = 'https' if https else 'http'
+    uri = '{}://{}:{}/provd'.format(scheme, host, port)
+    if username and password:
+        credentials = (username, password)
+    else:
+        credentials = None
+    return new_provisioning_client(uri, credentials)

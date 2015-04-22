@@ -15,5 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-from xivo_provd_client.client import new_provisioning_client
+from xivo_provd_client.client import new_provisioning_client,\
+    new_provisioning_client_from_config
 from xivo_provd_client.error import NotFoundError
