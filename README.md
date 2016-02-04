@@ -12,3 +12,11 @@ dev_mgr = provd_client.device_manager()
 
 print dev_mgr.find({'mac': '00:11:22:33:44:55'})
 ```
+
+Running unit tests
+------------------
+
+```
+pip install tox
+tox --recreate -e py27
+```
