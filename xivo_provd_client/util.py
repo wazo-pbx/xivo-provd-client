@@ -23,6 +23,7 @@ from weakref import WeakKeyDictionary
 def once(fun):
     # Decorator to use on regular function (NOT on method)
     cache = []
+
     @functools.wraps(fun)
     def aux(*args, **kwargs):
         try:
@@ -36,6 +37,7 @@ def once(fun):
 def once_per_instance(fun):
     # Decorator to use on method (NOT on regular function)
     cache_dict = WeakKeyDictionary()
+
     @functools.wraps(fun)
     def aux(self, *args, **kwargs):
         try:

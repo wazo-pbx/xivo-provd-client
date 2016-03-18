@@ -59,6 +59,7 @@ def _split_top_parentheses(str_):
 
 _PARSE_OIP_REGEX = re.compile(r'^(?:(\w+)\|)?(\w+)(?:;(\d+)(?:/(\d+))?)?')
 
+
 def parse_oip(oip_string):
     m = _PARSE_OIP_REGEX.search(oip_string)
     if not m:
