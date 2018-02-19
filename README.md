@@ -1,4 +1,4 @@
-# xivo-provd-client
+# xivo-provd-client [![Build Status](https://jenkins.wazo.community/buildStatus/icon?job=xivo-provd-client)](https://jenkins.wazo.community/job/xivo-provd-client)
 
 A python library to access the REST API of xivo-provd.
 
