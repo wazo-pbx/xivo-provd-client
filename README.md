@@ -2,6 +2,10 @@
 
 A python library to access the REST API of xivo-provd.
 
+## Deprecated
+
+Use wazo-provd-client instead.
+
 ## Usage
 
 ```python
